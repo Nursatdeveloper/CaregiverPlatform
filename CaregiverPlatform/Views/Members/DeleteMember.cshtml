@@ -1,0 +1,7 @@
+﻿@model MemberPlatform.Controllers.DeleteMemberDto
+
+<div class="alert alert-warning">Are you really sure?</div>
+<form asp-action="DeleteMemberPost" asp-controller="Members">
+    <input type="hidden" asp-for="Id" name="Id" value="@Model.Id" />
+    <input type="submit" class="btn btn-danger" value="Delete" />
+</form>

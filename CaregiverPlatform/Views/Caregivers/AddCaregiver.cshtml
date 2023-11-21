@@ -1,0 +1,26 @@
+﻿@model CaregiverPlatform.Controllers.AddCaregiverDto
+
+    <form  asp-action="AddCaregiver" asp-controller="Caregivers">
+    <div class="form-group">
+            <label asp-for="CaregiverUserId">CaregiverUserId</label>
+            <input class="form-control" type="string" asp-for="CaregiverUserId" name="CaregiverUserId" />
+    </div>
+    <div class="form-group">
+            <label asp-for="Photo">Photo</label>
+            <input class="form-control" type="string" asp-for="Photo" name="Photo" />
+    </div>
+    <div class="form-group">
+            <label asp-for="CaregivingType">CaregivingType</label>
+            <input class="form-control" type="string" asp-for="CaregivingType" name="CaregivingType" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender">Gender</label>
+        <input class="form-control" type="string" asp-for="Gender" name="Gender" />
+    </div>
+    <div class="form-group">
+            <label asp-for="HourlyRate">HourlyRate</label>
+            <input class="form-control" type="string" asp-for="HourlyRate" name="HourlyRate" />
+    </div>
+    <input type="submit" class=" mt-2 btn btn-outline-primary" value="Add Caregiver"/>
+</form>
+</div>

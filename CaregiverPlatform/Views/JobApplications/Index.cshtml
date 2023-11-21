@@ -1,0 +1,46 @@
+﻿@model JobApplicationPlatform.Controllers.GetJobApplicationsRes 
+
+
+@{
+    var hasPostBackMessage = !string.IsNullOrEmpty(ViewData["postbackMessage"]?.ToString());
+}
+
+@if(hasPostBackMessage) {
+        <div class="alert alert-primary" role="alert">
+        @ViewData["postbackMessage"]!.ToString()
+        </div>
+}
+
+<div class="container">
+    <div class="d-flex">
+        <a class="btn btn-info" asp-area="" asp-controller="JobApplications" asp-action="AddJobApplication">Add JobApplication</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Job Application Id</th>
+            <th scope="col">Job Id</th>
+            <th scope="col">Caregiver User Id</th>
+            <th scope="col">Date applied</th>
+            <th scope="col">Is active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model.JobApplications) {
+                <tr>
+                    <th scope="row">
+                        <a class="btn btn-sm btn-danger" asp-controller="JobApplications" asp-action="DeleteJobApplication" asp-route-id="@user.JobApplicationId">Delete</a>
+                    </th>
+                    <th scope="row">@user.JobApplicationId</th>
+                    <td>@user.JobId</td>
+                    <td>@user.CaregiverUserId</td>
+                    <td>@user.DateApplied</td>
+                    <td>@user.IsActive</td>
+                    
+                </tr>
+        }
+    </tbody>
+</table>

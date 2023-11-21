@@ -1,0 +1,7 @@
+﻿@model JobApplicationPlatform.Controllers.DeleteJobApplicationDto
+
+<div class="alert alert-warning">Are you really sure?</div>
+<form asp-action="DeleteJobApplicationPost" asp-controller="JobApplications">
+    <input type="hidden" asp-for="Id" name="Id" value="@Model.Id" />
+    <input type="submit" class="btn btn-danger" value="Delete" />
+</form>

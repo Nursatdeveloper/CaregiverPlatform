@@ -1,0 +1,47 @@
+﻿@model MemberPlatform.Controllers.GetMembersRes 
+
+
+@{
+    var hasPostBackMessage = !string.IsNullOrEmpty(ViewData["postbackMessage"]?.ToString());
+}
+
+@if(hasPostBackMessage) {
+        <div class="alert alert-primary" role="alert">
+        @ViewData["postbackMessage"]!.ToString()
+        </div>
+}
+
+<div class="container">
+    <div class="d-flex">
+        <a class="btn btn-info" asp-area="" asp-controller="Members" asp-action="AddMember">Add Member</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Member Id</th>
+            <th scope="col">User Id</th>
+            <th scope="col">House rules</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model.Members) {
+                <tr>
+                    <th scope="row">
+                        <a class="btn btn-sm btn-primary mr-1" asp-controller="Members" asp-action="EditMember" asp-route-id="@user.MemberId">Edit</a>
+                        <a class="btn btn-sm btn-danger" asp-controller="Members" asp-action="DeleteMember" asp-route-id="@user.MemberId">Delete</a>
+                    </th>
+                    <th scope="row">@user.MemberId</th>
+                    <td>@user.MemberUserId</td>
+                    <td>
+                        <ul>
+                        @foreach(var rule in @user.HouseRules){
+                            <li>@rule</li>
+                        }
+                        </ul>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

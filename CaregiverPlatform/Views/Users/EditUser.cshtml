@@ -1,0 +1,41 @@
+﻿@model CaregiverPlatform.Controllers.EditUserViewDto
+
+@{
+    var hasNoError = string.IsNullOrEmpty(ViewData["errorMessage"]?.ToString());
+}
+@if(!hasNoError) {
+    <div class="alert alert-danger">
+        @ViewData["errorMessage"]!.ToString()
+    </div>
+} else {
+    <div class="container">
+        <form asp-action="EditUser" asp-controller="Users">
+            <input type="hidden" asp-for="Id" name="Id" value="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input class="form-control" type="string" asp-for="Email" name="Email" value="@Model.Email" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name">Name</label>
+                <input class="form-control" type="string" asp-for="Name" name="Name" value="@Model.Name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname">Surname</label>
+                <input class="form-control" type="string" asp-for="Surname" name="Surname" value="@Model.Surname" />
+            </div>
+            <div class="form-group">
+                <label asp-for="City">City</label>
+                <input class="form-control" type="string" asp-for="City" name="City" value="@Model.City"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber">PhoneNumber</label>
+                <input class="form-control" type="string" asp-for="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfileDescription">ProfileDescription</label>
+                <textarea class="form-control" type="string" asp-for="ProfileDescription" name="ProfileDescription">@Model.ProfileDescription</textarea>
+            </div>
+            <input type="submit" class=" mt-2 btn btn-outline-primary" value="Save changes" />
+        </form>
+    </div>
+}

@@ -1,0 +1,14 @@
+﻿@model JobApplicationPlatform.Controllers.AddJobApplicationDto
+
+    <form  asp-action="AddJobApplication" asp-controller="JobApplications">
+    <div class="form-group">
+        <label asp-for="JobId">JobId</label>
+        <input class="form-control" type="string" asp-for="JobId" name="JobId" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CaregiverUserId">Caregiver User Id</label>
+        <input class="form-control" type="string" asp-for="CaregiverUserId" name="CaregiverUserId" />
+    </div>
+    
+    <input type="submit" class=" mt-2 btn btn-outline-primary" value="Add JobApplication"/>
+</form>

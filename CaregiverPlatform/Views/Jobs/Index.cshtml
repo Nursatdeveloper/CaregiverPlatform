@@ -1,0 +1,54 @@
+﻿@model JobPlatform.Controllers.GetJobsRes 
+
+
+@{
+    var hasPostBackMessage = !string.IsNullOrEmpty(ViewData["postbackMessage"]?.ToString());
+}
+
+@if(hasPostBackMessage) {
+        <div class="alert alert-primary" role="alert">
+        @ViewData["postbackMessage"]!.ToString()
+        </div>
+}
+
+<div class="container">
+    <div class="d-flex">
+        <a class="btn btn-info" asp-area="" asp-controller="Jobs" asp-action="AddJob">Add Job</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Job Id</th>
+            <th scope="col">Member User Id</th>
+            <th scope="col">Required caregiving type</th>
+            <th scope="col">Other requirements</th>
+            <th scope="col">Date posted</th>
+            <th scope="col">Is active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model.Jobs) {
+                <tr>
+                    <th scope="row">
+                        <a class="btn btn-sm btn-primary mr-1" asp-controller="Jobs" asp-action="EditJob" asp-route-id="@user.JobId">Edit</a>
+                        <a class="btn btn-sm btn-danger" asp-controller="Jobs" asp-action="DeleteJob" asp-route-id="@user.JobId">Delete</a>
+                    </th>
+                    <th scope="row">@user.JobId</th>
+                    <td>@user.MemberUserId</td>
+                    <td>@user.RequiredCaregivingType</td>
+                    <td>@user.DatePosted</td>
+                    <td>@user.IsActive</td>
+                    <td>
+                        <ul>
+                        @foreach(var rule in @user.OtherRequirements){
+                            <li>@rule</li>
+                        }
+                        </ul>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

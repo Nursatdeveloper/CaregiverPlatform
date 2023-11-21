@@ -1,0 +1,15 @@
+﻿@model MemberPlatform.Controllers.AddMemberDto
+
+    <form  asp-action="AddMember" asp-controller="Members">
+    <div class="form-group">
+            <label asp-for="MemberUserId">MemberUserId</label>
+            <input class="form-control" type="string" asp-for="MemberUserId" name="MemberUserId" />
+    </div>
+    <div class="form-group">
+        <label asp-for="HouseRules">House Rules (separated by comma)</label>
+        <input class="form-control" type="string" asp-for="HouseRules" name="HouseRules" />
+    </div>
+    
+    <input type="submit" class=" mt-2 btn btn-outline-primary" value="Add Member"/>
+</form>
+</div>

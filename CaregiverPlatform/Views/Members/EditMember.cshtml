@@ -1,0 +1,26 @@
+﻿@model MemberPlatform.Controllers.EditMemberViewDto
+
+@{
+    var hasNoError = string.IsNullOrEmpty(ViewData["errorMessage"]?.ToString());
+}
+@if(!hasNoError) {
+    <div class="alert alert-danger">
+        @ViewData["errorMessage"]!.ToString()
+    </div>
+} else {
+    <div class="container">
+        <form asp-action="EditMember" asp-controller="Members">
+            <input type="hidden" asp-for="Id" name="Id" value="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="MemberUserId">MemberUserId</label>
+                <input class="form-control" type="string" asp-for="MemberUserId" name="MemberUserId" value="@Model.MemberUserId" />
+            </div>
+            <div class="form-group">
+                <label asp-for="HouseRules">HouseRules</label>
+                <input class="form-control" type="string" asp-for="HouseRules" name="HouseRules" value="@Model.HouseRules" />
+            </div>
+            
+            <input type="submit" class=" mt-2 btn btn-outline-primary" value="Save changes" />
+        </form>
+    </div>
+}

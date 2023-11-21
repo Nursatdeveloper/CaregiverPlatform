@@ -1,0 +1,47 @@
+﻿@model CaregiverPlatform.Controllers.GetCaregiversRes
+
+@{
+    var hasPostBackMessage = !string.IsNullOrEmpty(ViewData["postbackMessage"]?.ToString());
+}
+
+@if(hasPostBackMessage) {
+    <div class="alert alert-primary" role="alert">
+        @ViewData["postbackMessage"]!.ToString()
+    </div>
+}
+
+<div class="container">
+    <div class="d-flex">
+        <a class="btn btn-info" asp-area="" asp-controller="Caregivers" asp-action="AddCaregiver">Add Caregiver</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Caregiver Id</th>
+            <th scope="col">User Id</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Caregiving Type</th>
+            <th scope="col">Hourly rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model.Caregivers) {
+            <tr>
+                <th scope="row">
+                    <a class="btn btn-sm btn-primary mr-1" asp-controller="Caregivers" asp-action="EditCaregiver" asp-route-id="@user.CaregiverId">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-controller="Caregivers" asp-action="DeleteCaregiver" asp-route-id="@user.CaregiverId">Delete</a>
+                </th>
+                <th scope="row">@user.CaregiverId</th>
+                <td>@user.CaregiverUserId</td>
+                <td>@user.Photo</td>
+                <td>@user.Gender</td>
+                <td>@user.CaregivingType</td>
+                <td>@user.HourlyRate</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

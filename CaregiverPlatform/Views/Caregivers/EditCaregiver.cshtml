@@ -1,0 +1,37 @@
+﻿@model CaregiverPlatform.Controllers.EditCaregiverViewDto
+
+@{
+    var hasNoError = string.IsNullOrEmpty(ViewData["errorMessage"]?.ToString());
+}
+@if(!hasNoError) {
+    <div class="alert alert-danger">
+        @ViewData["errorMessage"]!.ToString()
+    </div>
+} else {
+    <div class="container">
+        <form asp-action="EditCaregiver" asp-controller="Caregivers">
+            <input type="hidden" asp-for="Id" name="Id" value="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="CaregiverUserId">CaregiverUserId</label>
+                <input class="form-control" type="string" asp-for="CaregiverUserId" name="CaregiverUserId" value="@Model.CaregiverUserId" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo">Photo</label>
+                <input class="form-control" type="string" asp-for="Photo" name="Photo" value="@Model.Photo" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender">Gender</label>
+                <input class="form-control" type="string" asp-for="Gender" name="Gender" value="@Model.Gender" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CaregivingType">CaregivingType</label>
+                <input class="form-control" type="string" asp-for="CaregivingType" name="CaregivingType" value="@Model.CaregivingType" />
+            </div>
+            <div class="form-group">
+                <label asp-for="HourlyRate">HourlyRate</label>
+                <input class="form-control" type="string" asp-for="HourlyRate" name="HourlyRate" value="@Model.HourlyRate" />
+            </div>
+            <input type="submit" class=" mt-2 btn btn-outline-primary" value="Save changes" />
+        </form>
+    </div>
+}
